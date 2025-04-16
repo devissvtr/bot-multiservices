@@ -1,117 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Services Dashboard</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartAI Tools Hub</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(to right, #4A00E0, #8E2DE2);
-      color: #000;
-    }
-    /* Customize the style here */
-    .service-card {
-      margin-bottom: 20px;
+      background: linear-gradient(to right, #141E30, #243B55);
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
     }
     .header {
-      background-color: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      padding: 1rem 2rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 1.2rem 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
     .nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .nav__logo img {
-        height: 40px;
+      height: 50px;
     }
     .nav__list {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
     .nav__item {
-        margin-left: 1.5rem;
+      margin-left: 1.5rem;
     }
     .nav__link {
-        color:#fff;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .nav__link:hover {
+      color: #00f0ff;
     }
     .nav__login a {
-        text-decoration: none;
-        color: #fff;
-        font-size: 1rem;
-        margin-left: 1rem;
+      color: #fff;
+      margin-left: 1.2rem;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    .card {
+      background-color: rgba(255, 255, 255, 0.08);
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      color: #fff;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    }
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    .btn-primary {
+      background-color: #00f0ff;
+      color: #000;
+      border: none;
+      font-weight: bold;
+    }
+    .btn-primary:hover {
+      background-color: #00c6d7;
+    }
+    h1 {
+      text-shadow: 1px 1px 5px #000;
     }
   </style>
 </head>
 <body>
-  <header class="header" id="header">
+  <header class="header">
     <nav class="nav container">
-        <a href="/" class="nav__logo">
-            <img src="https://media.istockphoto.com/id/1182950590/vector/ai-logo-letter-vector-template-design-illustration-ai-logo-letter-vector-concept-design.jpg?s=612x612&w=0&k=20&c=BQDfp9wnDYO_1PSbEUvNswCF2e3Z7TuzsBxyPgK3x1M=" alt="Logo">
-        </a>
-        <ul class="nav__list">
-            <li class="nav__item"><a href="/transcribe" class="nav__link">Transcribe</a></li>
-            <li class="nav__item"><a href="/generate-text" class="nav__link">Generate Text</a></li>
-            <li class="nav__item"><a href="/text-to-image" class="nav__link">Text to Image</a></li>
-            <li class="nav__item"><a href="/chat-with-pdf" class="nav__link">Chat with PDF</a></li>
-        </ul>
-        <div class="nav__login">
-            <a href="/about-us">About Us</a>
-            <a href="/login"><i class="ri-user-line"></i></a>
-        </div>
+      <a href="/" class="nav__logo">
+        <img src="https://media.istockphoto.com/id/1182950590/vector/ai-logo-letter-vector-template-design-illustration-ai-logo-letter-vector-concept-design.jpg?s=612x612&w=0&k=20&c=BQDfp9wnDYO_1PSbEUvNswCF2e3Z7TuzsBxyPgK3x1M=" alt="Logo">
+      </a>
+      <ul class="nav__list">
+        <li class="nav__item"><a href="/voice2text" class="nav__link">Voice2Text</a></li>
+        <li class="nav__item"><a href="/smartwriter" class="nav__link">SmartWriter</a></li>
+        <li class="nav__item"><a href="/visionmaker" class="nav__link">VisionMaker</a></li>
+        <li class="nav__item"><a href="/pdf-talkbot" class="nav__link">PDF TalkBot</a></li>
+        <li class="nav__item"><a href="/sheetgenius" class="nav__link">SheetGenius</a></li>
+      </ul>
+      <div class="nav__login">
+        <a href="/aboutUs">About Us</a>
+        {% if username %}
+          <span style="margin-left: 1rem; color:#00f0ff;">👋 Welcome, <strong>{{ username }}</strong></span>
+          <a href="/logout" style="color:#ff5252; margin-left: 1rem;">Logout</a>
+        {% else %}
+          <a href="/login" style="margin-left: 1rem;"><i class="ri-user-line"></i></a>
+        {% endif %}
+      </div>
+      
     </nav>
   </header>
 
-<div class="container mt-5">
-  <h1 class="text-center mb-4" style="color: #fff;">AI Services Dashboard</h1>
-  
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card service-card">
-        <div class="card-body">
-          <h5 class="card-title">Transcribe AI</h5>
-          <p class="card-text">Convert speech or audio files into text.</p>
-          <a href="/transcribe" class="btn btn-primary">Access Service</a>
+  <div class="container mt-5">
+    <h1 class="text-center mb-5">🚀 SmartAI Tools Hub</h1>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card p-4 mb-4">
+          <div class="card-body">
+            <h5 class="card-title">🎙️ Voice2Text</h5>
+            <p class="card-text">Ubah suara atau rekaman audio menjadi teks dengan cepat dan akurat.</p>
+            <a href="/voice2text" class="btn btn-primary">Try Voice2Text</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card service-card">
-        <div class="card-body">
-          <h5 class="card-title">Chat with PDF AI</h5>
-          <p class="card-text">Interact with AI to extract and analyze text from PDF documents.</p>
-          <a href="/chat-with-pdf" class="btn btn-primary">Access Service</a>
+      <div class="col-md-6 col-lg-4">
+        <div class="card p-4 mb-4">
+          <div class="card-body">
+            <h5 class="card-title">✍️ SmartWriter</h5>
+            <p class="card-text">Buat konten kreatif, blog, atau deskripsi produk dengan AI yang cerdas.</p>
+            <a href="/smartwriter" class="btn btn-primary">Try SmartWriter</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card service-card">
-        <div class="card-body">
-          <h5 class="card-title">Generate Text AI</h5>
-          <p class="card-text">Automatically generate text based on provided input or prompts.</p>
-          <a href="/generate-text" class="btn btn-primary">Access Service</a>
+      <div class="col-md-6 col-lg-4">
+        <div class="card p-4 mb-4">
+          <div class="card-body">
+            <h5 class="card-title">🎨 VisionMaker</h5>
+            <p class="card-text">Ubah teks menjadi gambar artistik dalam hitungan detik.</p>
+            <a href="/visionmaker" class="btn btn-primary">Try VisionMaker</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card service-card">
-        <div class="card-body">
-          <h5 class="card-title">Text to Image AI</h5>
-          <p class="card-text">Convert text into images using AI algorithms.</p>
-          <a href="/text-to-image" class="btn btn-primary">Access Service</a>
+      <div class="col-md-6 col-lg-6">
+        <div class="card p-4 mb-4">
+          <div class="card-body">
+            <h5 class="card-title">📄 PDF TalkBot</h5>
+            <p class="card-text">Ngobrol dengan isi PDF kamu! Dapatkan insight langsung dari file.</p>
+            <a href="/pdf-talkbot" class="btn btn-primary">Try PDF TalkBot</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6">
+        <div class="card p-4 mb-4">
+          <div class="card-body">
+            <h5 class="card-title">📊 SheetGenius</h5>
+            <p class="card-text">Upload file Excel & biarkan AI menganalisis, memberi insight, dan bantu visualisasi data.</p>
+            <a href="/sheetgenius" class="btn btn-primary">Try SheetGenius</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Bootstrap JS (optional, only if you need JavaScript features) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
