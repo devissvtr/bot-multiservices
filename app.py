@@ -3,7 +3,6 @@ from flask import Flask, render_template, request, redirect, url_for, session
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # penting untuk session agar login bisa tersimpan
 
-
 # LOGIN ROUTE (GET & POST)
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -25,7 +24,6 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
 
-
 # ==========================
 # DASHBOARD / HOME
 # ==========================
@@ -35,7 +33,6 @@ def dashboard():
         return render_template('dashboard.html', username=session['username'])
     else:
         return redirect(url_for('login'))
-
 
 # OTHER ROUTES
 
@@ -62,8 +59,6 @@ def sheetgenius():
 @app.route('/aboutUs')
 def about_us():
     return render_template('aboutUs.html')
-
-
 
 # RUN
 
