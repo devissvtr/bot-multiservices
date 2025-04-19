@@ -11,6 +11,11 @@
       font-family: 'Segoe UI', sans-serif;
       color: #fff;
     }
+    .dashboard-logo {
+      width: 60px;
+      height: 40px;
+      margin: 10px;
+    }
     .header {
       background-color: rgba(255, 255, 255, 0.05);
       padding: 1.2rem 2rem;
@@ -81,7 +86,7 @@
   <header class="header">
     <nav class="nav container">
       <a href="/" class="nav__logo">
-        <img src="https://media.istockphoto.com/id/1182950590/vector/ai-logo-letter-vector-template-design-illustration-ai-logo-letter-vector-concept-design.jpg?s=612x612&w=0&k=20&c=BQDfp9wnDYO_1PSbEUvNswCF2e3Z7TuzsBxyPgK3x1M=" alt="Logo">
+        <img class="dashboard-logo"src="{{ url_for('static', filename='logo_bot-multiservices.png') }}" alt="Logo">
       </a>
       <ul class="nav__list">
         <li class="nav__item"><a href="/voice2text" class="nav__link">Voice2Text</a></li>

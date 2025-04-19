@@ -15,5 +15,4 @@
 Sebagai tambahan, kami juga menyematkan fitur <strong>Spreadsheet Analysis</strong> yang berfungsi untuk membantu menganalisis data dalam format spreadsheet, seperti Excel atau CSV, secara otomatis dan terstruktur. Fitur ini sangat berguna bagi pengguna yang ingin memahami data tanpa harus melakukan analisis manual secara mendalam.
 
 Dengan aplikasi ini, kami bertujuan untuk meningkatkan efisiensi, kreativitas, dan produktivitas pengguna dalam menyelesaikan berbagai tugas digital hanya dengan satu platform yang cerdas dan mudah digunakan.
-
 </p>
