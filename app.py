@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'  # penting untuk session agar login bisa tersimpan
+app.secret_key = 'supersecretkey'
 
 # LOGIN ROUTE (GET & POST)
 @app.route('/login', methods=['GET', 'POST'])
