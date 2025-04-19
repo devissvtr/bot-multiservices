@@ -1,5 +1,3 @@
-smartwriter.js
-
 export default {
     async fetch(request, env) {
       // Set up CORS headers
@@ -45,4 +43,8 @@ export default {
       // Handle all other methods
       return new Response('Method not allowed', { status: 405, headers });
     }
+<<<<<<< HEAD
   };
+=======
+  };  
+>>>>>>> f669b86247ab08a86f644c075cb0032652dcb893
