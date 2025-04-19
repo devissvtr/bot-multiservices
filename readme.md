@@ -4,11 +4,11 @@
 
 | No | Nama Lengkap              | NIM               | Fitur            | Email              |
 |----|---------------------------|-------------------|------------------|--------------------|
-| 1 | Dita Amalia Putri   | 1202210409           | Chat With PDF | dita@example.com |
-| 2 | Ilma Hamala Nur Faiza               | 1202213349           | Dashboard & Transcribe AI  | ilma@example.com |
-| 3 | Luh Komang Devi Savitri       | 1202213124           | Spreadsheet Analysis         | devi@example.com | 
-| 4 | Najma Qurrotul Aeni    | 12202213152           | About us & Text to Image   | najma@example.com |
-| 5 | Natasha Alflashya Kristy   | 1202213227          | Generate AI   | nastasha@example.com |
+| 1 | Dita Amalia Putri   | 1202210409           | PdfTalkBot | dita@example.com |
+| 2 | Ilma Hamala Nur Faiza               | 1202213349           | Voice2Text  | ilma@example.com |
+| 3 | Luh Komang Devi Savitri       | 1202213124           | Sheet Genius         | devi@example.com | 
+| 4 | Najma Qurrotul Aeni    | 12202213152           | About us & Dashboard & vision maker   | najma@example.com |
+| 5 | Natasha Alflashya Kristy   | 1202213227          | SmartWriter  | nastasha@example.com |
 
 
 ## Deskripsi Proyek
