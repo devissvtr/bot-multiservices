@@ -12,9 +12,8 @@
   <style>
     body {
       background: linear-gradient(to right, #141E30, #243B55);
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
       color: #fff;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     .dashboard-logo {
@@ -263,23 +262,23 @@
   </style>
 </head>
 <body>
-  <header class="header" id="header">
-    <div class="header-container">
+  <header class="header">
+    <nav class="nav container">
       <a href="/" class="nav__logo">
         <img class="dashboard-logo"src="{{ url_for('static', filename='logo_bot-multiservices.png') }}" alt="Logo">
       </a>
-      <div class="nav__menu">
-        <a href="/voice2text" class="nav__link">Voice2Text</a>
-        <a href="/smartwriter" class="nav__link">SmartWriter</a>
-        <a href="/visionmaker" class="nav__link">VisionMaker</a>
-        <a href="/pdf-talkbot" class="nav__link">PDF TalkBot</a>
-        <a href="/sheetgenius" class="nav__link">SheetGenius</a>
-      </div>
+      <ul class="nav__list">
+        <li class="nav__item"><a href="/voice2text" class="nav__link">Voice2Text</a></li>
+        <li class="nav__item"><a href="/smartwriter" class="nav__link">SmartWriter</a></li>
+        <li class="nav__item"><a href="/visionmaker" class="nav__link">VisionMaker</a></li>
+        <li class="nav__item"><a href="/pdf-talkbot" class="nav__link">PDF TalkBot</a></li>
+        <li class="nav__item"><a href="/sheetgenius" class="nav__link">SheetGenius</a></li>
+      </ul>
       <div class="nav__login">
         <a href="/about-us">About Us</a>
         <a href="/login"><i class="ri-user-line"></i></a>
       </div>
-    </div>
+    </nav>
   </header>
 
   <main class="container">
