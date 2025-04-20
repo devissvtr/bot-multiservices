@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SheetGenius - SmartAI Tools Hub</title>
+    <title>Sheet Genius</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css">
@@ -107,7 +107,6 @@
         margin-left: 1.5rem;
     }
 
-    /* Adjust main content to account for fixed header */
     .main {
         margin-top: 5rem;
         flex-grow: 1;
@@ -163,6 +162,7 @@
 
     .form-group {
         margin-bottom: 1.5rem;
+        position: relative;
     }
 
     .form-group label {
@@ -189,6 +189,28 @@
         background-color: rgba(255, 255, 255, 0.15);
         color: #fff;
         box-shadow: 0 0 0 0.2rem rgba(0, 240, 255, 0.25);
+    }
+
+    select.form-control {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2300f0ff' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 16px 12px;
+        padding-right: 2.5rem;
+    }
+
+    select.form-control option {
+        background-color: #2a2a3a;
+        color: white;
+        padding: 10px;
+    }
+
+    select.form-control:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 white;
     }
 
     .btn-primary {
@@ -219,11 +241,22 @@
         color: #fff;
     }
 
-    #loading {
+    #loadingSpinner {
         display: none;
         color: #00f0ff;
         font-style: italic;
         margin: 1rem 0;
+    }
+
+    .loading-icon i {
+        animation: spin 1s linear infinite;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 
     .file-upload {
@@ -317,6 +350,17 @@
         color: #ccc;
     }
 
+    .tooltip-inner {
+        background-color: #1B2B44;
+        color: #00f0ff;
+        border: 1px solid #00f0ff;
+    }
+
+    .bs-tooltip-auto[x-placement^=top] .arrow::before, 
+    .bs-tooltip-top .arrow::before {
+        border-top-color: #00f0ff;
+    }
+
     @media (max-width: 768px) {
         .nav {
             flex-direction: column;
@@ -340,6 +384,14 @@
         
         .analysis-controls {
             flex-direction: column;
+        }
+        
+        .card {
+            padding: 1.5rem;
+        }
+        
+        h1 {
+            font-size: 2rem;
         }
     }
     </style>
@@ -371,7 +423,7 @@
                     <h1>📊 SheetGenius</h1>
                     <p class="text-center mb-4">Upload your CSV file to analyze and visualize your data</p>
                     
-                    <div class="file-upload" id="uploadArea">
+                    <div class="file-upload" id="uploadArea" data-toggle="tooltip" data-placement="top" title="Supports CSV files up to 5MB">
                         <i class="ri-file-upload-line"></i>
                         <h3>Drag & Drop your CSV file here</h3>
                         <p>or click to browse files</p>
@@ -397,6 +449,7 @@
                     
                     <h2>Data Visualization</h2>
                     <div class="form-group">
+                        <label for="chartType">Chart Type</label>
                         <select class="form-control" id="chartType">
                             <option value="bar">Bar Chart</option>
                             <option value="line">Line Chart</option>
@@ -423,7 +476,7 @@
         &copy; 2025 SmartAI Tools Hub. All rights reserved.
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>

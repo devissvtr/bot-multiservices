@@ -1,3 +1,7 @@
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
 let parsedData = null;
 let dataChart = null;
 
@@ -17,8 +21,8 @@ uploadArea.addEventListener('click', () => fileInput.click());
 
 fileInput.addEventListener('change', (e) => {
   if (e.target.files.length > 0) {
-    const file = e.target.files[0];
-    handleFileUpload(file);
+      const file = e.target.files[0];
+      handleFileUpload(file);
   }
 });
 
@@ -39,13 +43,13 @@ uploadArea.addEventListener('drop', (e) => {
   uploadArea.style.backgroundColor = 'transparent';
   
   if (e.dataTransfer.files.length > 0) {
-    const file = e.dataTransfer.files[0];
-    if (file.name.endsWith('.csv')) {
-      fileInput.files = e.dataTransfer.files;
-      handleFileUpload(file);
-    } else {
-      alert('Please upload a CSV file.');
-    }
+      const file = e.dataTransfer.files[0];
+      if (file.name.endsWith('.csv')) {
+          fileInput.files = e.dataTransfer.files;
+          handleFileUpload(file);
+      } else {
+          alert('Please upload a CSV file.');
+      }
   }
 });
 
@@ -55,24 +59,30 @@ chartTypeSelect.addEventListener('change', updateChart);
 
 function handleFileUpload(file) {
   if (!file.name.endsWith('.csv')) {
-    alert('Please upload a CSV file.');
-    return;
+      alert('Please upload a CSV file.');
+      return;
   }
   
-  fileNameDisplay.textContent = `Selected file: ${file.name}`;
+  // Check file size (5MB limit)
+  if (file.size > 5 * 1024 * 1024) {
+      alert('File size exceeds 5MB limit. Please upload a smaller file.');
+      return;
+  }
+  
+  fileNameDisplay.textContent = `Selected file: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
   fileNameDisplay.style.display = 'block';
   analysisControls.style.display = 'flex';
   
   Papa.parse(file, {
-    header: true,
-    complete: function(results) {
-      parsedData = results;
-      displayDataPreview(results.data.slice(0, 10));
-    },
-    error: function(error) {
-      console.error('Error parsing CSV:', error);
-      alert('Error parsing CSV file. Please check the file format.');
-    }
+      header: true,
+      complete: function(results) {
+          parsedData = results;
+          displayDataPreview(results.data.slice(0, 10));
+      },
+      error: function(error) {
+          console.error('Error parsing CSV:', error);
+          alert('Error parsing CSV file. Please check the file format.');
+      }
   });
 }
 
@@ -83,16 +93,16 @@ function displayDataPreview(data) {
   
   let tableHTML = '<thead><tr>';
   headers.forEach(header => {
-    tableHTML += `<th>${header}</th>`;
+      tableHTML += `<th>${header}</th>`;
   });
   tableHTML += '</tr></thead><tbody>';
   
   data.forEach(row => {
-    tableHTML += '<tr>';
-    headers.forEach(header => {
-      tableHTML += `<td>${row[header] || ''}</td>`;
-    });
-    tableHTML += '</tr>';
+      tableHTML += '<tr>';
+      headers.forEach(header => {
+          tableHTML += `<td>${row[header] || ''}</td>`;
+      });
+      tableHTML += '</tr>';
   });
   
   tableHTML += '</tbody>';
@@ -101,18 +111,21 @@ function displayDataPreview(data) {
 
 function analyzeData() {
   if (!parsedData || parsedData.data.length === 0) {
-    alert('No data to analyze. Please upload a CSV file first.');
-    return;
+      alert('No data to analyze. Please upload a CSV file first.');
+      return;
   }
   
   loadingSpinner.style.display = 'block';
   resultsSection.style.display = 'none';
   
   setTimeout(() => {
-    generateInsights();
-    createChart();
-    loadingSpinner.style.display = 'none';
-    resultsSection.style.display = 'block';
+      generateInsights();
+      createChart();
+      loadingSpinner.style.display = 'none';
+      resultsSection.style.display = 'block';
+      
+      // Scroll to results section
+      resultsSection.scrollIntoView({ behavior: 'smooth' });
   }, 1500);
 }
 
@@ -122,7 +135,7 @@ function generateInsights() {
   const data = parsedData.data;
   const headers = Object.keys(data[0]);
   const numericHeaders = headers.filter(header => {
-    return data.some(row => !isNaN(parseFloat(row[header])));
+      return data.some(row => !isNaN(parseFloat(row[header])));
   });
   
   let insightsHTML = '';
@@ -130,44 +143,44 @@ function generateInsights() {
   insightsHTML += `<div class="insight-item">Dataset contains ${data.length} rows and ${headers.length} columns</div>`;
   
   if (numericHeaders.length > 0) {
-    insightsHTML += `<div class="insight-item">Numeric columns detected: ${numericHeaders.join(', ')}</div>`;
-    
-    numericHeaders.forEach(header => {
-      const values = data.map(row => parseFloat(row[header])).filter(val => !isNaN(val));
-      if (values.length === 0) return;
+      insightsHTML += `<div class="insight-item">Numeric columns detected: ${numericHeaders.join(', ')}</div>`;
       
-      const sum = values.reduce((a, b) => a + b, 0);
-      const avg = sum / values.length;
-      const min = Math.min(...values);
-      const max = Math.max(...values);
-      
-      insightsHTML += `
-        <div class="insight-item">
-          <strong>${header}</strong>: Average = ${avg.toFixed(2)}, Min = ${min.toFixed(2)}, Max = ${max.toFixed(2)}
-        </div>
-      `;
-    });
+      numericHeaders.forEach(header => {
+          const values = data.map(row => parseFloat(row[header])).filter(val => !isNaN(val));
+          if (values.length === 0) return;
+          
+          const sum = values.reduce((a, b) => a + b, 0);
+          const avg = sum / values.length;
+          const min = Math.min(...values);
+          const max = Math.max(...values);
+          
+          insightsHTML += `
+              <div class="insight-item">
+                  <strong>${header}</strong>: Average = ${avg.toFixed(2)}, Min = ${min.toFixed(2)}, Max = ${max.toFixed(2)}
+              </div>
+          `;
+      });
   }
   
   const dateHeaders = headers.filter(header => {
-    return data.some(row => {
-      const val = row[header];
-      return val && !isNaN(Date.parse(val));
-    });
+      return data.some(row => {
+          const val = row[header];
+          return val && !isNaN(Date.parse(val));
+      });
   });
   
   if (dateHeaders.length > 0) {
-    insightsHTML += `<div class="insight-item">Date columns detected: ${dateHeaders.join(', ')}</div>`;
+      insightsHTML += `<div class="insight-item">Date columns detected: ${dateHeaders.join(', ')}</div>`;
   }
   
   const categoricalHeaders = headers.filter(header => {
-    if (numericHeaders.includes(header) || dateHeaders.includes(header)) return false;
-    const uniqueValues = new Set(data.map(row => row[header]));
-    return uniqueValues.size > 1 && uniqueValues.size <= 10;
+      if (numericHeaders.includes(header) || dateHeaders.includes(header)) return false;
+      const uniqueValues = new Set(data.map(row => row[header]));
+      return uniqueValues.size > 1 && uniqueValues.size <= 10;
   });
   
   if (categoricalHeaders.length > 0) {
-    insightsHTML += `<div class="insight-item">Potential categorical columns: ${categoricalHeaders.join(', ')}</div>`;
+      insightsHTML += `<div class="insight-item">Potential categorical columns: ${categoricalHeaders.join(', ')}</div>`;
   }
   
   insightsContainer.innerHTML = insightsHTML;
@@ -179,75 +192,75 @@ function createChart() {
   const data = parsedData.data;
   const headers = Object.keys(data[0]);
   const numericHeaders = headers.filter(header => {
-    return data.some(row => !isNaN(parseFloat(row[header])));
+      return data.some(row => !isNaN(parseFloat(row[header])));
   });
   
   if (numericHeaders.length < 2) {
-    alert('Not enough numeric columns for visualization. Need at least 2 numeric columns.');
-    return;
+      alert('Not enough numeric columns for visualization. Need at least 2 numeric columns.');
+      return;
   }
   
   const ctx = document.getElementById('dataChart').getContext('2d');
 
   const labels = data.slice(0, 20).map((_, i) => `Row ${i + 1}`);
   const datasets = numericHeaders.slice(0, 3).map((header, i) => {
-    const values = data.slice(0, 20).map(row => parseFloat(row[header]) || 0);
-    const colors = ['#00f0ff', '#ff6b6b', '#5f27cd'];
-    
-    return {
-      label: header,
-      data: values,
-      backgroundColor: colors[i],
-      borderColor: colors[i],
-      borderWidth: 1
-    };
+      const values = data.slice(0, 20).map(row => parseFloat(row[header]) || 0);
+      const colors = ['#00f0ff', '#ff6b6b', '#5f27cd'];
+      
+      return {
+          label: header,
+          data: values,
+          backgroundColor: colors[i],
+          borderColor: colors[i],
+          borderWidth: 1
+      };
   });
   
   if (dataChart) {
-    dataChart.destroy();
+      dataChart.destroy();
   }
   
   dataChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: datasets
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'top',
-          labels: {
-            color: '#fff'
-          }
-        },
-        tooltip: {
-          mode: 'index',
-          intersect: false
-        }
+      type: 'bar',
+      data: {
+          labels: labels,
+          datasets: datasets
       },
-      scales: {
-        x: {
-          grid: {
-            color: 'rgba(255, 255, 255, 0.1)'
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+              legend: {
+                  position: 'top',
+                  labels: {
+                      color: '#fff'
+                  }
+              },
+              tooltip: {
+                  mode: 'index',
+                  intersect: false
+              }
           },
-          ticks: {
-            color: '#fff'
+          scales: {
+              x: {
+                  grid: {
+                      color: 'rgba(255, 255, 255, 0.1)'
+                  },
+                  ticks: {
+                      color: '#fff'
+                  }
+              },
+              y: {
+                  grid: {
+                      color: 'rgba(255, 255, 255, 0.1)'
+                  },
+                  ticks: {
+                      color: '#fff'
+                  },
+                  beginAtZero: true
+              }
           }
-        },
-        y: {
-          grid: {
-            color: 'rgba(255, 255, 255, 0.1)'
-          },
-          ticks: {
-            color: '#fff'
-          },
-          beginAtZero: true
-        }
       }
-    }
   });
 }
 
@@ -258,9 +271,9 @@ function updateChart() {
   dataChart.config.type = chartType;
   
   if (chartType === 'pie' || chartType === 'doughnut') {
-    if (dataChart.data.datasets.length > 1) {
-      dataChart.data.datasets = [dataChart.data.datasets[0]];
-    }
+      if (dataChart.data.datasets.length > 1) {
+          dataChart.data.datasets = [dataChart.data.datasets[0]];
+      }
   }
   
   dataChart.update();
@@ -273,10 +286,12 @@ function resetAnalysis() {
   resultsSection.style.display = 'none';
   insightsContainer.innerHTML = '';
   dataPreview.innerHTML = '';
+  uploadArea.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+  uploadArea.style.backgroundColor = 'transparent';
   
   if (dataChart) {
-    dataChart.destroy();
-    dataChart = null;
+      dataChart.destroy();
+      dataChart = null;
   }
   
   parsedData = null;
