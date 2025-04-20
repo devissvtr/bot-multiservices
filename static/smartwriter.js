@@ -39,8 +39,4 @@ export default {
   
       return new Response('Method not allowed', { status: 405, headers });
     }
-<<<<<<< HEAD
   };
-=======
-}
->>>>>>> 283a8742050b2288bd6a0aab905367d49705b6c9
