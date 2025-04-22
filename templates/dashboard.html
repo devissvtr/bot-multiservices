@@ -248,93 +248,81 @@
     </style>
 </head>
 <body>
-    <div class="header-container">
+    <header class="header-container">
         <div class="nav-container">
             <nav class="nav">
                 <a href="/" class="nav__logo">
                     <img class="dashboard-logo" src="{{ url_for('static', filename='logo_bot-multiservices.png') }}" alt="Logo">
                 </a>
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="/voice2text" class="nav__link">Voice2Text</a></li>
-                    <li class="nav__item"><a href="/smartwriter" class="nav__link">SmartWriter</a></li>
-                    <li class="nav__item"><a href="/visionmaker" class="nav__link">VisionMaker</a></li>
-                    <li class="nav__item"><a href="/pdf-talkbot" class="nav__link">PDF TalkBot</a></li>
-                    <li class="nav__item"><a href="/sheetgenius" class="nav__link">SheetGenius</a></li>
+                    <li class="nav__item"><a href="http://localhost:3001" class="nav__link">Voice2Text</a></li>
+                    <li class="nav__item"><a href="http://localhost:3002" class="nav__link">SmartWriter</a></li>
+                    <li class="nav__item"><a href="http://localhost:3003" class="nav__link">VisionMaker</a></li>
+                    <li class="nav__item"><a href="http://localhost:3004" class="nav__link">PDF TalkBot</a></li>
+                    <li class="nav__item"><a href="http://localhost:3005" class="nav__link">SheetGenius</a></li>
                 </ul>
-                <div class="nav__right">
-                    <a href="/aboutUs" class="nav__link">About Us</a>
-                    {% if username %}
-                        <span class="welcome-text">👋 Welcome, <strong>{{ username }}</strong></span>
-                        <a href="/logout" class="logout-link">Logout</a>
-                    {% else %}
-                        <a href="/login" class="nav__link"><i class="ri-user-line"></i></a>
-                    {% endif %}
-                </div>
             </nav>
         </div>
-    </div>
-      
-    </nav>
-  </header>
+    </header>
 
-  <main class="main">
-    <div class="container">
-        <h1>🚀 SmartAI Tools Hub</h1>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4">
-                <div class="card p-4 mb-4" >
-                    <div class="card-body">
-                        <h5 class="card-title">🎙️ Voice2Text</h5>
-                        <p class="card-text">Ubah suara atau rekaman audio menjadi teks dengan cepat dan akurat.</p>
-                        <a href="/voice2text" class="btn btn-primary">Try Voice2Text</a>
+    <main class="main">
+        <div class="container">
+            <h1>🚀 SmartAI Tools Hub</h1>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-4 mb-4" >
+                        <div class="card-body">
+                            <h5 class="card-title">🎙️ Voice2Text</h5>
+                            <p class="card-text">Ubah suara atau rekaman audio menjadi teks dengan cepat dan akurat.</p>
+                            <a href="/voice2text" class="btn btn-primary">Try Voice2Text</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card p-4 mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">✍️ SmartWriter</h5>
-                        <p class="card-text">Buat konten kreatif, blog, atau deskripsi produk dengan AI yang cerdas.</p>
-                        <a href="/smartwriter" class="btn btn-primary">Try SmartWriter</a>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-4 mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">✍️ SmartWriter</h5>
+                            <p class="card-text">Buat konten kreatif, blog, atau deskripsi produk dengan AI yang cerdas.</p>
+                            <a href="/smartwriter" class="btn btn-primary">Try SmartWriter</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card p-4 mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">🎨 VisionMaker</h5>
-                        <p class="card-text">Ubah teks menjadi gambar artistik dalam hitungan detik.</p>
-                        <a href="/visionmaker" class="btn btn-primary">Try VisionMaker</a>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-4 mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">🎨 VisionMaker</h5>
+                            <p class="card-text">Ubah teks menjadi gambar artistik dalam hitungan detik.</p>
+                            <a href="/visionmaker" class="btn btn-primary">Try VisionMaker</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-6">
-                <div class="card p-4 mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">📄 PDF TalkBot</h5>
-                        <p class="card-text">Ngobrol dengan isi PDF kamu! Dapatkan insight langsung dari file.</p>
-                        <a href="/pdf-talkbot" class="btn btn-primary">Try PDF TalkBot</a>
+                <div class="col-md-6 col-lg-6">
+                    <div class="card p-4 mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">📄 PDF TalkBot</h5>
+                            <p class="card-text">Ngobrol dengan isi PDF kamu! Dapatkan insight langsung dari file.</p>
+                            <a href="/pdf-talkbot" class="btn btn-primary">Try PDF TalkBot</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-6">
-                <div class="card p-4 mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">📊 SheetGenius</h5>
-                        <p class="card-text">Upload file Excel & biarkan AI menganalisis, memberi insight, dan bantu visualisasi data.</p>
-                        <a href="/sheetgenius" class="btn btn-primary">Try SheetGenius</a>
+                <div class="col-md-6 col-lg-6">
+                    <div class="card p-4 mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">📊 SheetGenius</h5>
+                            <p class="card-text">Upload file Excel & biarkan AI menganalisis, memberi insight, dan bantu visualisasi data.</p>
+                            <a href="/sheetgenius" class="btn btn-primary">Try SheetGenius</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
-<footer>
-    &copy; 2025 SmartAI Tools Hub. All rights reserved.
-</footer>
+    <footer>
+        &copy; 2025 SmartAI Tools Hub. All rights reserved.
+    </footer>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
