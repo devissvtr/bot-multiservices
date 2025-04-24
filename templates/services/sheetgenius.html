@@ -402,7 +402,7 @@
             <a href="/" class="nav__logo">
                 <img class="dashboard-logo"src="{{ url_for('static', filename='logo_bot-multiservices.png') }}" alt="Logo">
             </a>
-              <ul class="nav__list">
+            <ul class="nav__list">
                 <li class="nav__item"><a href="http://localhost:3001" class="nav__link">Voice2Text</a></li>
                 <li class="nav__item"><a href="http://localhost:3002" class="nav__link">SmartWriter</a></li>
                 <li class="nav__item"><a href="http://localhost:3003" class="nav__link">VisionMaker</a></li>
@@ -480,6 +480,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
-    <script src="/static/sheet-analyst.js"></script>
+    <script src="{{ url_for('static', filename='sheet-analyst.js') }}"></script>
 </body>
 </html>

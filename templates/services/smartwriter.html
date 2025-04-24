@@ -61,7 +61,8 @@
     }
 
     .nav__item {
-        margin: 0 1rem;
+        margin: 0.25rem 0;
+        width: 100%;
     }
 
     .nav__link {
@@ -263,7 +264,6 @@
             responseContainer.style.display = 'none';
 
             try {
-                // Kirim request langsung ke API
                 const response = await fetch(`https://iaesearchai.22mzaima.workers.dev?prompt=${encodeURIComponent(prompt)}`);
                 
                 if (!response.ok) {

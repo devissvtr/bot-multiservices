@@ -28,7 +28,7 @@
       margin: 10px;
     }
 
-    .header-container {
+    .header {
         background-color: #1B2B44;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         position: fixed;
@@ -38,17 +38,13 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .nav-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
     .nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 0;
+        padding: 1rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .nav__logo img {
@@ -65,7 +61,7 @@
     }
 
     .nav__item {
-        margin: 0 0.75rem;
+        margin: 0 1rem;
     }
 
     .nav__link {
@@ -86,7 +82,7 @@
     .nav__right {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 1.5rem;
     }
 
     .nav__login {
@@ -107,7 +103,7 @@
 
     .nav__login .ri-user-line {
         font-size: 1.2rem;
-        margin-left: 1rem;
+        margin-left: 1.5rem;
     }
 
     .main {
@@ -138,7 +134,6 @@
         color: #fff;
         backdrop-filter: blur(8px);
         transition: transform 0.3s ease;
-        
     }
 
     .card:hover {
@@ -198,14 +193,12 @@
         .nav {
             flex-direction: column;
             align-items: flex-start;
-            padding: 1rem 0;
+            padding: 1rem;
         }
         
         .nav__list {
             flex-wrap: wrap;
             margin: 1rem 0;
-            justify-content: center;
-            width: 100%;
         }
         
         .nav__item {
@@ -215,9 +208,6 @@
         .nav__right {
             width: 100%;
             justify-content: space-between;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .main {
@@ -226,10 +216,6 @@
     }
 
     @media (max-width: 576px) {
-        .nav-container {
-            padding: 0 15px;
-        }
-        
         .nav__list {
             flex-direction: column;
             align-items: flex-start;
@@ -242,27 +228,29 @@
         
         .nav__link {
             display: block;
-            padding: 0.5rem 0;
+            width: 100%;
         }
     }
     </style>
 </head>
 <body>
-    <header class="header-container">
-        <div class="nav-container">
-            <nav class="nav">
-                <a href="/" class="nav__logo">
-                    <img class="dashboard-logo" src="{{ url_for('static', filename='logo_bot-multiservices.png') }}" alt="Logo">
-                </a>
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="http://localhost:3001" class="nav__link">Voice2Text</a></li>
-                    <li class="nav__item"><a href="http://localhost:3002" class="nav__link">SmartWriter</a></li>
-                    <li class="nav__item"><a href="http://localhost:3003" class="nav__link">VisionMaker</a></li>
-                    <li class="nav__item"><a href="http://localhost:3004" class="nav__link">PDF TalkBot</a></li>
-                    <li class="nav__item"><a href="http://localhost:3005" class="nav__link">SheetGenius</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="nav__logo">
+                <img class="dashboard-logo" src="{{ url_for('static', filename='logo_bot-multiservices.png') }}" alt="Logo">
+            </a>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="http://localhost:3001" class="nav__link">Voice2Text</a></li>
+                <li class="nav__item"><a href="http://localhost:3002" class="nav__link">SmartWriter</a></li>
+                <li class="nav__item"><a href="http://localhost:3003" class="nav__link">VisionMaker</a></li>
+                <li class="nav__item"><a href="http://localhost:3004" class="nav__link">PDF TalkBot</a></li>
+                <li class="nav__item"><a href="http://localhost:3005" class="nav__link">SheetGenius</a></li>
+            </ul>
+            <div class="nav__right">
+                <a href="/aboutUs" class="nav__link">About Us</a>
+                <a href="/login" class="nav__link"><i class="ri-user-line"></i></a>
+            </div>
+        </nav>
     </header>
 
     <main class="main">
@@ -270,11 +258,11 @@
             <h1>🚀 SmartAI Tools Hub</h1>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-4">
-                    <div class="card p-4 mb-4" >
+                    <div class="card p-4 mb-4">
                         <div class="card-body">
                             <h5 class="card-title">🎙️ Voice2Text</h5>
-                            <p class="card-text">Ubah suara atau rekaman audio menjadi teks dengan cepat dan akurat.</p>
-                            <a href="/voice2text" class="btn btn-primary">Try Voice2Text</a>
+                            <p class="card-text">Ubah suara atau rekaman audio menjadi teks dengan cepat dan akurat</p>
+                            <a href="http://localhost:3001" class="btn btn-primary">Explore Now</a>
                         </div>
                     </div>
                 </div>
@@ -282,8 +270,8 @@
                     <div class="card p-4 mb-4">
                         <div class="card-body">
                             <h5 class="card-title">✍️ SmartWriter</h5>
-                            <p class="card-text">Buat konten kreatif, blog, atau deskripsi produk dengan AI yang cerdas.</p>
-                            <a href="/smartwriter" class="btn btn-primary">Try SmartWriter</a>
+                            <p class="card-text">Buat konten kreatif, blog, atau deskripsi produk dengan AI</p>
+                            <a href="http://localhost:3002" class="btn btn-primary">Explore Now</a>
                         </div>
                     </div>
                 </div>
@@ -291,8 +279,8 @@
                     <div class="card p-4 mb-4">
                         <div class="card-body">
                             <h5 class="card-title">🎨 VisionMaker</h5>
-                            <p class="card-text">Ubah teks menjadi gambar artistik dalam hitungan detik.</p>
-                            <a href="/visionmaker" class="btn btn-primary">Try VisionMaker</a>
+                            <p class="card-text">Ubah teks menjadi gambar artistik dalam hitungan detik</p>
+                            <a href="http://localhost:3003" class="btn btn-primary">Explore Now</a>
                         </div>
                     </div>
                 </div>
@@ -300,8 +288,8 @@
                     <div class="card p-4 mb-4">
                         <div class="card-body">
                             <h5 class="card-title">📄 PDF TalkBot</h5>
-                            <p class="card-text">Ngobrol dengan isi PDF kamu! Dapatkan insight langsung dari file.</p>
-                            <a href="/pdf-talkbot" class="btn btn-primary">Try PDF TalkBot</a>
+                            <p class="card-text">Ngobrol dengan isi PDF kamu! Temukan wawasan menarik langsung dari dokumen Anda</p>
+                            <a href="http://localhost:3004" class="btn btn-primary">Explore Now</a>
                         </div>
                     </div>
                 </div>
@@ -309,8 +297,8 @@
                     <div class="card p-4 mb-4">
                         <div class="card-body">
                             <h5 class="card-title">📊 SheetGenius</h5>
-                            <p class="card-text">Upload file Excel & biarkan AI menganalisis, memberi insight, dan bantu visualisasi data.</p>
-                            <a href="/sheetgenius" class="btn btn-primary">Try SheetGenius</a>
+                            <p class="card-text">Upload file Excel & biarkan AI menganalisis, memberi insight, dan bantu visualisasi data</p>
+                            <a href="http://localhost:3005" class="btn btn-primary">Explore Now</a>
                         </div>
                     </div>
                 </div>
